@@ -23,35 +23,32 @@ STRIP := $(NDK_PATH)/llvm-strip
 CFLAGS = -Wall -O2 -std=c11
 
 # Source and output directories
-SRC_DIR = src/gid-changer
 OUT_DIR = target
 
 # Source files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 # Default target
-all: $(OUT_DIR) $(OUT_DIR)/gidchanger_release.f $(OUT_DIR)/gidchanger_debug.f
+all: $(OUT_DIR)/gidchanger_release.f $(OUT_DIR)/gidchanger_debug.f
 
 # Release build
 $(OUT_DIR)/gidchanger_release.f: $(OBJS)
+	mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
 	$(STRIP) $@
 
 # Debug build
 $(OUT_DIR)/gidchanger_debug.f: $(OBJS)
+	mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -g -o $@ $^
 
 # Compile source files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Create output directory
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)
-
 # Clean up
 .PHONY: clean
 clean:
-	rm -f $(SRC_DIR)/*.o
+	rm -f *.o
 	rm -rf $(OUT_DIR)
