@@ -41,6 +41,7 @@ jobs:
           mkdir target
           for dir in $(ls -d src/*/); do
             make -C ${dir}
+            mv ${dir}/target/* target
           done
       - name: Upload artifact
         if: success()
