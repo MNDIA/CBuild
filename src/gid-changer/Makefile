@@ -37,11 +37,13 @@ $(OUT_DIR)/gidchanger_release.f: $(OBJS)
 	mkdir -p $(OUT_DIR)
 	$(CC) $(CFLAGS) -o $@ $^
 	$(STRIP) $@
+    @echo "Release build output: $@"
 
 # Debug build
 $(OUT_DIR)/gidchanger_debug.f: $(OBJS)
 	mkdir -p $(OUT_DIR)
-	$(CC) $(CFLAGS) -g -o $@ $^
+    $(CC) $(CFLAGS) -g -o $@ $^
+    @echo "Debug build output: $@"
 
 # Compile source files
 %.o: %.c
