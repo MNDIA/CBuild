@@ -29,14 +29,14 @@ $(RELEASE_TARGET): $(SRC)
 	mkdir -p $(TARGET_DIR)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -o $@ $<
 	$(STRIP) --strip-unneeded $@
-	@echo "Release build directory: $(TARGET_DIR)"
+	@test -f $@ && echo "Release target exists: $@"
 
 
 # Debug build
 $(DEBUG_TARGET): $(SRC)
 	mkdir -p $(TARGET_DIR)
 	$(CC) $(CFLAGS) -g $(INCLUDE_FLAGS) -o $@ $<
-	@echo "Debug build directory: $(TARGET_DIR)"
+	@test -f $@ && echo "Debug target exists: $@"
 
 # Clean up
 .PHONY: clean
