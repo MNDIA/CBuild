@@ -38,6 +38,11 @@ $(DEBUG_TARGET): $(SRC)
 	$(CC) $(CFLAGS) -g $(INCLUDE_FLAGS) -o $@ $<
 	@test -f $@ && echo "Debug target exists: $@"
 
+# List files in target directory
+.PHONY: list
+list:
+	@echo "Listing files in $(TARGET_DIR):"
+	@ls -l $(TARGET_DIR)
 # Clean up
 .PHONY: clean
 clean:
